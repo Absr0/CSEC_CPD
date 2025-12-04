@@ -1,6 +1,4 @@
 MOD = 10**9 + 7
-
-# Define the character to integer mapping
 def char_to_int(c):
     if '0' <= c <= '9':
         return ord(c) - ord('0')
@@ -12,22 +10,15 @@ def char_to_int(c):
         return 62
     elif c == '_':
         return 63
-
-# Precompute the number of pairs (x, y) such that (x & y) == i
 pair_count = [0] * 64
 for x in range(64):
     for y in range(64):
         pair_count[x & y] += 1
-
-# Read the input string and compute the result
 def count_pairs(s):
     result = 1
     for char in s:
         result = (result * pair_count[char_to_int(char)]) % MOD
     return result
 
-# Input
 s = input().strip()
-
-# Output the result
 print(count_pairs(s))
